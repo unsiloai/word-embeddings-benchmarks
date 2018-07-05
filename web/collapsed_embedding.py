@@ -28,8 +28,8 @@ class CollapsedEmbedding(Embedding):
         except KeyError:
             try:
                 return self.vectors[self.vocabulary[self.get_collapsed_key(k)]]
-            except KeyError:
-                return None
+            except KeyError as e:
+                raise KeyError(e)
 
     def __delitem__(self, k):
         """Remove the word and its vector from the embedding.
